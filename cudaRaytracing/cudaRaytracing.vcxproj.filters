@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="cxx_src">
+      <UniqueIdentifier>{e57262ed-4c7e-4b12-bd8c-12f56de16b13}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="cuda_src">
+      <UniqueIdentifier>{f457b85b-403c-453b-ace9-6a95e4730160}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <CudaCompile Include="src\cuda_src\main.cu">
+      <Filter>cuda_src</Filter>
+    </CudaCompile>
+    <CudaCompile Include="src\cuda_src\maths\matrix.cu">
+      <Filter>cuda_src</Filter>
+    </CudaCompile>
+    <CudaCompile Include="src\cuda_src\camera.cu">
+      <Filter>cuda_src</Filter>
+    </CudaCompile>
+    <CudaCompile Include="src\cuda_src\shading\shading.cu">
+      <Filter>cuda_src</Filter>
+    </CudaCompile>
+    <CudaCompile Include="src\cuda_src\geometry\geometry.cu">
+      <Filter>cuda_src</Filter>
+    </CudaCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="src\cxx_src\sdl_wrapper\sdl.cpp">
+      <Filter>cxx_src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cxx_src\utils\util.cpp">
+      <Filter>cxx_src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cxx_src\imgui\imgui.cpp">
+      <Filter>cxx_src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cxx_src\imgui\imgui_demo.cpp">
+      <Filter>cxx_src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cxx_src\imgui\imgui_draw.cpp">
+      <Filter>cxx_src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cxx_src\imgui\imgui_widgets.cpp">
+      <Filter>cxx_src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cxx_src\imgui\imgui_impl_sdl.cpp">
+      <Filter>cxx_src</Filter>
+    </ClCompile>
+    <ClCompile Include="src\cxx_src\imgui\imgui_impl_opengl3.cpp">
+      <Filter>cxx_src</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="src\cxx_src\sdl_wrapper\sdl.h">
+      <Filter>cxx_src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx_src\color\color.h">
+      <Filter>cxx_src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx_src\utils\constants.h">
+      <Filter>cxx_src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx_src\utils\util.h">
+      <Filter>cxx_src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cuda_src\color.cuh">
+      <Filter>cuda_src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cuda_src\utils\utils.cuh">
+      <Filter>cuda_src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cuda_src\maths\matrix.cuh">
+      <Filter>cuda_src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cuda_src\camera.cuh">
+      <Filter>cuda_src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cuda_src\maths\vector.cuh">
+      <Filter>cuda_src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cuda_src\shading\shading.cuh">
+      <Filter>cuda_src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cuda_src\geometry\geometry.cuh">
+      <Filter>cuda_src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cuda_src\geometry\nodeList.cuh">
+      <Filter>cuda_src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx_src\imgui\imconfig.h">
+      <Filter>cxx_src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx_src\imgui\imgui.h">
+      <Filter>cxx_src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx_src\imgui\imgui_internal.h">
+      <Filter>cxx_src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx_src\imgui\imstb_rectpack.h">
+      <Filter>cxx_src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx_src\imgui\imstb_textedit.h">
+      <Filter>cxx_src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx_src\imgui\imstb_truetype.h">
+      <Filter>cxx_src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx_src\imgui\imgui_impl_sdl.h">
+      <Filter>cxx_src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx_src\imgui\imgui_impl_opengl3.h">
+      <Filter>cxx_src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cxx_src\glew-2.1.0\include\GL\glew.h">
+      <Filter>cxx_src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cuda_src\utils\cudaList.cuh">
+      <Filter>cuda_src</Filter>
+    </ClInclude>
+  </ItemGroup>
+</Project>
