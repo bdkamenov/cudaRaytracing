@@ -8,6 +8,13 @@
 
 namespace CUDA_RAY {
 
+class Shading;
+
+struct Node
+{
+	Geometry* geom_;
+	Shading* shader_;
+};
 
 struct Light
 {
@@ -18,7 +25,7 @@ struct Light
 class Shading
 {
 public:
-	__device__ virtual Color shade(const Ray& ray, const IntersectInfo& info, const CudaList<Light>* lights) = 0;
+	__device__ virtual Color shade(const Ray& ray, const IntersectInfo& info, const CudaList<Light>* lights, const CudaList<Node>* nodeList) = 0;
 	__device__ virtual ~Shading() {}
 };
 
@@ -26,9 +33,9 @@ public:
 class CheckerShader : public Shading
 {
 public:
-	__device__ CheckerShader(const Color& a, const Color& b, float scale = 5.f);
+	__device__ CheckerShader(const Color& a, const Color& b, float scale = 0.2f);
 	__device__ ~CheckerShader() {}
-	__device__ virtual Color shade(const Ray& ray, const IntersectInfo& info, const CudaList<Light>* lights) override;
+	__device__ virtual Color shade(const Ray& ray, const IntersectInfo& info, const CudaList<Light>* lights, const CudaList<Node>* nodeList) override;
 
 	Color a_, b_;
 	float scale_;

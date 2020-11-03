@@ -20,8 +20,8 @@ using CUDA_RAY::Light;
 using CUDA_RAY::Vector;
 using CUDA_RAY::CudaList;
 
-constexpr const int LIGHTS_COUNT = 2;
-constexpr const int NODES_COUNT = 1;
+const int LIGHTS_COUNT = 2;
+constexpr const int NODES_COUNT = 2;
 
 #define checkCudaErrors(val) check_cuda( (val), #val, __FILE__, __LINE__ )
 void check_cuda(cudaError_t result, char const* const func, const char* const file, int const line) {
@@ -62,7 +62,7 @@ __device__ Color raytrace(const CudaList<Node>* list,  const Ray& ray, const Cud
     if (closestNode == nullptr)
         return Color(0, 0, 0); // TODO: return background color
     else
-       return closestNode->shader_->shade(ray, closestInfo, lights);
+       return closestNode->shader_->shade(ray, closestInfo, lights, list);
 }
 
 
@@ -108,11 +108,25 @@ __global__ void setupNodes(CudaList<Node>* list)
     if (threadIdx.x == 0 && blockIdx.x == 0) {
 
         list->list_ = new Node[NODES_COUNT];
+        list->cap_ = NODES_COUNT;
 
-        list->list_[0].geom_ = new CUDA_RAY::Plane(1.f);
+        Node a;
+        a.geom_ = new CUDA_RAY::Plane(1.f);
+        a.shader_ = new CUDA_RAY::CheckerShader(Color(1.f, 0.f, 0.f),
+            Color(0.f, 1.f, 0.f));
+
+        list->addElem(a);
+
+        Node b;
+        b.geom_ = new CUDA_RAY::Sphere(Vector(20, 50, 60), 10);
+        b.shader_ = new CUDA_RAY::CheckerShader(Color(0.5f, 0.f, 0.f), Color(0.1f, 0.7f, 0.3f), 5.f);
+        list->addElem(b);
+
+
+        /*list->list_[0].geom_ = new CUDA_RAY::Plane(1.f);
         list->list_[0].shader_ = new CUDA_RAY::CheckerShader(Color(1.f, 0.f, 0.f),
             Color(0.f, 1.f, 0.f));
-        list->size_ = NODES_COUNT;
+        list->size_ = NODES_COUNT;*/
     }
 }
 
@@ -124,14 +138,14 @@ __global__ void setupLights(CudaList<Light>* lights)
         lights->cap_ = LIGHTS_COUNT;
 
         Light a;
-        a.pos_ = Vector(35, 10, 100);
+        a.pos_ = Vector(0, 100, 10);
         a.intensity_ = 11000.f;
-        lights->addElem(a);
 
-        //Light b;
-        //b.pos_ = Vector(35, 10, 200);
-        //b.intensity_ = 11000.f;
-        //lights->addElem(b);
+        Light b;
+        b.pos_ = Vector(40, 100, 10);
+        b.intensity_ = 11000.f;
+        lights->addElem(b);
+        lights->addElem(a);
 
         /*a.pos_ = Vector(35, 5, 200);
         lights->addElem(a);*/
@@ -152,7 +166,9 @@ __global__ void freeWorld(Camera** cam, CudaList<Node>* list, CudaList<Light>* l
 
         delete list->list_[0].shader_;
         delete list->list_[0].geom_;
-        delete[] list->list_;
+        delete list->list_[1].shader_;
+        delete list->list_[1].geom_;
+        // delete[] list->list_;
     }
 }
 

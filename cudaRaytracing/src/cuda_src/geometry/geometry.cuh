@@ -41,7 +41,7 @@ private:
 class Sphere: public Geometry
 {
 public:
-	__device__ Sphere(Vector pos): pos_(pos) {}
+	__device__ Sphere(Vector pos, float rad): pos_(pos), rad_(rad) {}
 	__device__ ~Sphere() {}
 
 	__device__ virtual bool intersect(const Ray& ray, IntersectInfo& info) override;

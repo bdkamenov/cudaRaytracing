@@ -6,12 +6,6 @@
 
 namespace CUDA_RAY {
 
-struct Node
-{
-    Geometry* geom_;
-    Shading* shader_;
-};
-
 class NodeList 
 {
 public:
