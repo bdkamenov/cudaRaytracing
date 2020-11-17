@@ -19,6 +19,8 @@ using CUDA_RAY::Ray;
 using CUDA_RAY::Light;
 using CUDA_RAY::Vector;
 using CUDA_RAY::CudaList;
+using CUDA_RAY::Lambert;
+using CUDA_RAY::CheckerTexture;
 
 const int LIGHTS_COUNT = 2;
 constexpr const int NODES_COUNT = 2;
@@ -112,14 +114,13 @@ __global__ void setupNodes(CudaList<Node>* list)
 
         Node a;
         a.geom_ = new CUDA_RAY::Plane(1.f);
-        a.shader_ = new CUDA_RAY::CheckerShader(Color(1.f, 0.f, 0.f),
-            Color(0.f, 1.f, 0.f));
+        a.shader_ = new CUDA_RAY::Lambert(new CheckerTexture(Color(1.f, 0.f, 0.f), Color(0.f, 1.f, 0.f)));
 
         list->addElem(a);
 
         Node b;
         b.geom_ = new CUDA_RAY::Sphere(Vector(20, 50, 60), 10);
-        b.shader_ = new CUDA_RAY::CheckerShader(Color(0.5f, 0.f, 0.f), Color(0.1f, 0.7f, 0.3f), 5.f);
+        b.shader_ = new CUDA_RAY::Lambert(new CheckerTexture(Color(0.5f, 0.f, 0.f), Color(0.1f, 0.7f, 0.3f), 5.f));
         list->addElem(b);
 
 

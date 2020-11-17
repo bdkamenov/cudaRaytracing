@@ -24,6 +24,9 @@
     <CudaCompile Include="src\cuda_src\geometry\geometry.cu">
       <Filter>cuda_src</Filter>
     </CudaCompile>
+    <CudaCompile Include="src\cuda_src\shading\texturing.cu">
+      <Filter>cuda_src</Filter>
+    </CudaCompile>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="src\cxx_src\sdl_wrapper\sdl.cpp">
@@ -116,6 +119,9 @@
       <Filter>cxx_src</Filter>
     </ClInclude>
     <ClInclude Include="src\cuda_src\utils\cudaList.cuh">
+      <Filter>cuda_src</Filter>
+    </ClInclude>
+    <ClInclude Include="src\cuda_src\shading\texturing.cuh">
       <Filter>cuda_src</Filter>
     </ClInclude>
   </ItemGroup>

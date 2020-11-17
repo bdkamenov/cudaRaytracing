@@ -28,6 +28,7 @@
     <ClInclude Include="src\cuda_src\maths\matrix.cuh" />
     <ClInclude Include="src\cuda_src\maths\vector.cuh" />
     <ClInclude Include="src\cuda_src\shading\shading.cuh" />
+    <ClInclude Include="src\cuda_src\shading\texturing.cuh" />
     <ClInclude Include="src\cuda_src\utils\cudaList.cuh" />
     <ClInclude Include="src\cuda_src\utils\utils.cuh" />
     <ClInclude Include="src\cxx_src\color\color.h" />
@@ -50,6 +51,7 @@
     <CudaCompile Include="src\cuda_src\main.cu" />
     <CudaCompile Include="src\cuda_src\maths\matrix.cu" />
     <CudaCompile Include="src\cuda_src\shading\shading.cu" />
+    <CudaCompile Include="src\cuda_src\shading\texturing.cu" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{8B128E93-DD80-4630-B6A9-7285A05534B9}</ProjectGuid>

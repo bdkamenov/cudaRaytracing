@@ -27,7 +27,7 @@ struct Color {
         float components_[3];
     };
 
-    __host__ __device__ Color() = default;
+    __host__ __device__ Color() : r_(0.f), g_(0.f), b_(0.f) {}
     __host__ __device__ Color(float r, float g, float b) : r_(r), g_(g), b_(b) { }  //!< Construct a color from floatingpoint values
 
     __host__ __device__ Color(unsigned rgbcolor) : //!< Construct a color from R8G8B8 value like "0xffce08"

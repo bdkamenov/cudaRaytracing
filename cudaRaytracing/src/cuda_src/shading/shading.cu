@@ -27,18 +27,11 @@ __device__ bool visibilityCheck(const CudaList<Node>* nodeList, const Vector& st
 }
 
 
-CheckerShader::CheckerShader(const Color& a, const Color& b, float scale) : a_(a), b_(b), scale_(scale)
+Lambert::Lambert(Texture* texture, const Color& color) : color_(color), texture_(texture) {}
+
+__device__ Color Lambert::shade(const Ray& ray, const IntersectInfo& info, const CUDA_RAY::CudaList<Light>* lights, const CudaList<Node>* nodeList)
 {
-
-}
-
-__device__ Color CheckerShader::shade(const Ray& ray, const IntersectInfo& info, const CUDA_RAY::CudaList<Light>* lights, const CudaList<Node>* nodeList)
-{
-	int x = int(floor(info.u_ * scale_));
-	int y = int(floor(info.v_ * scale_));
-
-	Color checkerColor = ((x + y) % 2 == 0) ? a_ : b_;
-
+	Color textureColor = texture_ ? texture_->sample(info) : color_;
 	Color result = Color(0.f, 0.f, 0.f);
 
 	//printf("bpabpa %i \n", lights->size_);
@@ -47,7 +40,7 @@ __device__ Color CheckerShader::shade(const Ray& ray, const IntersectInfo& info,
 	{
 		if (!visibilityCheck(nodeList, info.ip_ + info.normal_ * 1e-3, lights->list_[i].pos_))
 		{
-			checkerColor = Color(0.f, 0.f, 0.f);
+			textureColor = Color(0.f, 0.f, 0.f);
 		}
 
 		Vector v1 = info.normal_;
@@ -57,7 +50,7 @@ __device__ Color CheckerShader::shade(const Ray& ray, const IntersectInfo& info,
 		double lambertCoeff = dot(v1, v2);
 		double attenuationCoeff = 1.0 / distanceToLightSqr;
 
-		result += checkerColor * lambertCoeff * attenuationCoeff * lights->list_[i].intensity_;
+		result += textureColor * lambertCoeff * attenuationCoeff * lights->list_[i].intensity_;
 	}
 
 	return result;

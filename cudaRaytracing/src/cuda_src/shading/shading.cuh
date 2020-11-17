@@ -3,6 +3,7 @@
 
 #include "color.cuh"
 #include "geometry/geometry.cuh"
+#include "shading/texturing.cuh"
 #include "utils/cudaList.cuh"
 
 
@@ -30,15 +31,15 @@ public:
 };
 
 
-class CheckerShader : public Shading
+class Lambert : public Shading
 {
 public:
-	__device__ CheckerShader(const Color& a, const Color& b, float scale = 0.2f);
-	__device__ ~CheckerShader() {}
+	__device__ Lambert(Texture* texture = nullptr, const Color& color = Color());
+	__device__ ~Lambert() {}
 	__device__ virtual Color shade(const Ray& ray, const IntersectInfo& info, const CudaList<Light>* lights, const CudaList<Node>* nodeList) override;
 
-	Color a_, b_;
-	float scale_;
+	Texture* texture_;
+	Color color_;
 };
 
 }
